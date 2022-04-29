@@ -1,0 +1,11 @@
+.jumbotron {
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("/public/images/burgers.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    /*background-size: contain;*/
+}
