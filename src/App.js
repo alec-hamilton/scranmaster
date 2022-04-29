@@ -1,11 +1,15 @@
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 import Jumbo from './Component/Jumbo'
 
-function App() {
+const App = () => {
   return (
-    <div className="container-fluid px-sm-2">
+    <div className="App">
+      <Header />
       <Jumbo />
+      <Footer />
     </div>
   );
 }
