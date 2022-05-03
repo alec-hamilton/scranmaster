@@ -32,11 +32,28 @@ function App() {
 
     );
 
+  const jumboTitleInit = 'Food. Delivered.';
+  const jumboTextInit = 'Order your favourite food from local restaurants, right to your door.';
+
+  const [jumboTitle, setJumboTitle] = useState(jumboTitleInit);
+  const [jumboText, setJumboText] = useState(jumboTextInit);
+  const [showingRestaurants, setShowingRestaurants] = useState(true);
+
+  function handleButtonClick() {
+    setJumboTitle('Wendys');
+    setJumboText('');
+    setShowingRestaurants(false);
+  }
+
   return (
     <div className="App">
       <Header />
       <div className="m-3">
-        <Jumbo />
+        <Jumbo
+          jumbotitle={jumboTitle}
+          jumbotext={jumboText}
+          showingRestaurants={showingRestaurants}
+        />
        </div>
       <MainComponent restaurantItems={restaurantItems}/>
       <Footer />
