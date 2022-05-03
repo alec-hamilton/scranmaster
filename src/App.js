@@ -13,7 +13,10 @@ function App() {
     const jumboTextInit = 'Order your favourite food from local restaurants, right to your door.';
     const [jumboTitle, setJumboTitle] = useState(jumboTitleInit);
     const [jumboText, setJumboText] = useState(jumboTextInit);
-    const [showingRestaurants, setShowingRestaurants] = useState(true);
+    const [showingRestaurants, setShowingRestaurants] = useState('visible');
+    const [showingChangeButton, setShowingChangeButton] = useState('invisible');
+    const [restaurantName, setRestaurantName] = useState('');
+
 
 
     const fetchData = async () => {
@@ -37,10 +40,33 @@ function App() {
         }, []
     );
 
+    const fetchData2 = async () => {
+        const response = await fetch('http://localhost:8080/restaurants/1');
+
+        if (!response.ok) {
+            throw new Error('Data could not be fetched.')
+        }
+
+        return await response.json();
+    }
+
+    useEffect(() => {
+            fetchData2()
+                .then((restaurantData) => {
+                    setRestaurantName(restaurantData.restaurant);
+                    console.log(restaurantName)
+                    // setJumboTitle(restaurantName);
+                    // setJumboText('');
+                })
+                .catch((e) => {
+                    console.log(e.message);
+                })
+        }, [restaurantName]
+    );
+
     function handleButtonClick() {
-        setJumboTitle('Wendys');
+        setJumboTitle(restaurantName);
         setJumboText('');
-        setShowingRestaurants(false);
     }
 
     return (
@@ -48,12 +74,15 @@ function App() {
             <Header/>
             <div className="m-3">
                 <Jumbo
-                    jumbotitle={jumboTitle}
-                    jumbotext={jumboText}
+                    jumboTitle={jumboTitle}
+                    setJumboTitle={setJumboTitle}
+                    jumboText={jumboText}
+                    setJumboText={setJumboText}
                     showingRestaurants={showingRestaurants}
                 />
             </div>
-            <MainComponent restaurantItems={restaurantItems}/>
+            <MainComponent restaurantItems={restaurantItems} />
+            <button onClick={handleButtonClick}>Chipotle</button>
             <Footer/>
         </div>
     );
