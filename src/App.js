@@ -1,14 +1,20 @@
-import './App.css';
+import "./App.css";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-import Jumbo from './Components/Jumbo'
+import Jumbo from "./Components/Jumbo";
 import MainComponent from "./Components/MainComponent";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import {useEffect, useState} from "react";
 
 function App() {
 
     const [restaurantItems, setRestaurantItems] = useState([]);
+    const jumboTitleInit = 'Food. Delivered.';
+    const jumboTextInit = 'Order your favourite food from local restaurants, right to your door.';
+    const [jumboTitle, setJumboTitle] = useState(jumboTitleInit);
+    const [jumboText, setJumboText] = useState(jumboTextInit);
+    const [showingRestaurants, setShowingRestaurants] = useState(true);
+
 
     const fetchData = async () => {
         const response = await fetch('http://localhost:8080/restaurants');
@@ -29,36 +35,28 @@ function App() {
                     console.log(e.message);
                 })
         }, []
-
     );
 
-  const jumboTitleInit = 'Food. Delivered.';
-  const jumboTextInit = 'Order your favourite food from local restaurants, right to your door.';
+    function handleButtonClick() {
+        setJumboTitle('Wendys');
+        setJumboText('');
+        setShowingRestaurants(false);
+    }
 
-  const [jumboTitle, setJumboTitle] = useState(jumboTitleInit);
-  const [jumboText, setJumboText] = useState(jumboTextInit);
-  const [showingRestaurants, setShowingRestaurants] = useState(true);
-
-  function handleButtonClick() {
-    setJumboTitle('Wendys');
-    setJumboText('');
-    setShowingRestaurants(false);
-  }
-
-  return (
-    <div className="App">
-      <Header />
-      <div className="m-3">
-        <Jumbo
-          jumbotitle={jumboTitle}
-          jumbotext={jumboText}
-          showingRestaurants={showingRestaurants}
-        />
-       </div>
-      <MainComponent restaurantItems={restaurantItems}/>
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="App">
+            <Header/>
+            <div className="m-3">
+                <Jumbo
+                    jumbotitle={jumboTitle}
+                    jumbotext={jumboText}
+                    showingRestaurants={showingRestaurants}
+                />
+            </div>
+            <MainComponent restaurantItems={restaurantItems}/>
+            <Footer/>
+        </div>
+    );
 }
 
 export default App;
