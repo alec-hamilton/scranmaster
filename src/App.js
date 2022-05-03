@@ -12,7 +12,9 @@ const App = () => {
   return (
     <div className="App">
       <Header />
+      <div className="m-3">
       <Jumbo />
+        </div>
       <Footer />
     </div>
   );
