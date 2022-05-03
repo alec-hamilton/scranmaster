@@ -3,7 +3,6 @@ import './App.css';
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Jumbo from './Components/Jumbo'
-import {useState} from "react";
 
 const App = () => {
 
