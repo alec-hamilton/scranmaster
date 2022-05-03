@@ -15,7 +15,44 @@ function App() {
     const [jumboText, setJumboText] = useState(jumboTextInit);
     const [showingRestaurants, setShowingRestaurants] = useState('visible');
     const [showingChangeButton, setShowingChangeButton] = useState('invisible');
-    const [restaurantName, setRestaurantName] = useState('');
+
+
+    const [restaurantID, setRestaurantID] = useState('');
+
+    const [menuItems, setMenuitems] = useState([]);
+
+
+    useEffect(() => {
+
+        if (restaurantID === '') {
+            return;
+        }
+
+        console.log(restaurantID);
+        fetchMenu()
+            .then((menuData) => {
+                setMenuitems(menuData);
+                setJumboTitle(menuData.restaurant);
+                setJumboText('');
+            })
+            .catch((e) => {
+                console.log(e.message);
+            })
+
+    },
+        [restaurantID]
+    );
+
+    const fetchMenu = async () => {
+
+        const response = await fetch('http://localhost:8080/restaurants/' + restaurantID);
+
+        if (!response.ok) {
+            throw new Error('Data could not be fetched.')
+        }
+
+        return await response.json();
+    }
 
 
 
@@ -40,35 +77,6 @@ function App() {
         }, []
     );
 
-    const fetchData2 = async () => {
-        const response = await fetch('http://localhost:8080/restaurants/1');
-
-        if (!response.ok) {
-            throw new Error('Data could not be fetched.')
-        }
-
-        return await response.json();
-    }
-
-    useEffect(() => {
-            fetchData2()
-                .then((restaurantData) => {
-                    setRestaurantName(restaurantData.restaurant);
-                    console.log(restaurantName)
-                    // setJumboTitle(restaurantName);
-                    // setJumboText('');
-                })
-                .catch((e) => {
-                    console.log(e.message);
-                })
-        }, [restaurantName]
-    );
-
-    function handleButtonClick() {
-        setJumboTitle(restaurantName);
-        setJumboText('');
-    }
-
     return (
         <div className="App">
             <Header/>
@@ -80,9 +88,12 @@ function App() {
                     setJumboText={setJumboText}
                     showingRestaurants={showingRestaurants}
                 />
+                <MainComponent
+                    restaurantItems={restaurantItems}
+                    setRestaurantID={setRestaurantID}
+                    menuItems={menuItems}
+                />
             </div>
-            <MainComponent restaurantItems={restaurantItems} />
-            <button onClick={handleButtonClick}>Chipotle</button>
             <Footer/>
         </div>
     );
