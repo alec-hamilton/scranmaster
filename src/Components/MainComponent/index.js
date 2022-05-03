@@ -1,9 +1,14 @@
 import Restaurants from "./Restaurants";
 
-const MainComponent = ({restaurantItems}) => {
+const MainComponent = (props) => {
+    const restaurantItems = props.restaurantItems;
+    const showingRestaurants = props.showingRestaurants;
+
 
     return (
-        <Restaurants restaurantItems={restaurantItems}/>
+        <>
+            <Restaurants showingRestaurants={showingRestaurants} restaurantItems={restaurantItems}/>
+        </>
     );
 }
 
