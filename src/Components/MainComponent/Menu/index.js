@@ -12,10 +12,10 @@ const Menu = ({menuItems}) => {
     }
 
     return (
-        <div className="row">
+        <div className="d-flex flex-wrap justify-content-start">
             {menuItems.foodItems.map((foodItems, index) => {
                     return (
-                        <div className="col-12 col-lg-3" key={index}>
+                        <div className="col-12 col-lg-2 px-1 my-1" key={index}>
                             <FoodItem foodItems={foodItems}/>
                         </div>
                     );

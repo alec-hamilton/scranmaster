@@ -1,11 +1,11 @@
 import Restaurants from "./Restaurants";
 import Menu from "./Menu";
 
-const MainComponent = ({restaurantItems, setRestaurantID, menuItems, restaurantID}) => {
+const MainComponent = ({restaurantItems, setRestaurantID, menuItems}) => {
 
     return (
         <>
-        <Restaurants restaurantItems={restaurantItems} setRestaurantID={setRestaurantID} />
+        <Restaurants className="container" restaurantItems={restaurantItems} setRestaurantID={setRestaurantID} />
         <Menu menuItems={menuItems}/>
         </>
     );
