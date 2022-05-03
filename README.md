@@ -20,10 +20,10 @@ Then move to the `2022-mar-scranmaster` directory:
 cd 2022-mar-scranmaster
 ```
 
-Then you must install bootstrap by running:
+Then install dependencies by running:
 
 ```bash
-npm install bootstrap
+npm install
 ```
 
 Then to run the app:
