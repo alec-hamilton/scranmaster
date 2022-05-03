@@ -1,8 +1,9 @@
 import Restaurants from "./Restaurants";
 
-const MainComponent = () => {
+const MainComponent = ({restaurantItems}) => {
+
     return (
-        <Restaurants />
+        <Restaurants restaurantItems={restaurantItems}/>
     );
 }
 
