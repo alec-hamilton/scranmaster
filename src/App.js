@@ -1,25 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import Jumbo from "./Components/Jumbo";
+import MainComponent from "./Components/MainComponent";
+import "bootstrap/dist/css/bootstrap.min.css";
+import {useEffect, useState} from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [restaurantItems, setRestaurantItems] = useState([]);
+    const jumboTitleInit = 'Food. Delivered.';
+    const jumboTextInit = 'Order your favourite food from local restaurants, right to your door.';
+    const [jumboTitle, setJumboTitle] = useState(jumboTitleInit);
+    const [jumboText, setJumboText] = useState(jumboTextInit);
+    const [showingRestaurants, setShowingRestaurants] = useState(true);
+
+
+    const fetchData = async () => {
+        const response = await fetch('http://localhost:8080/restaurants');
+
+        if (!response.ok) {
+            throw new Error('Data could not be fetched.')
+        }
+
+        return await response.json();
+    }
+
+    useEffect(() => {
+            fetchData()
+                .then((restaurantData) => {
+                    setRestaurantItems(restaurantData);
+                })
+                .catch((e) => {
+                    console.log(e.message);
+                })
+        }, []
+    );
+
+    function handleButtonClick() {
+        setJumboTitle('Wendys');
+        setJumboText('');
+        setShowingRestaurants(false);
+    }
+
+    return (
+        <div className="App">
+            <Header/>
+            <div className="m-3">
+                <Jumbo
+                    jumbotitle={jumboTitle}
+                    jumbotext={jumboText}
+                    showingRestaurants={showingRestaurants}
+                />
+            </div>
+            <MainComponent restaurantItems={restaurantItems}/>
+            <Footer/>
+        </div>
+    );
 }
 
 export default App;
