@@ -1,9 +1,9 @@
 import Restaurants from "./Restaurants";
 
 const MainComponent = (props) => {
+
     const restaurantItems = props.restaurantItems;
     const showingRestaurants = props.showingRestaurants;
-
 
     return (
         <>

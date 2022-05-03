@@ -53,7 +53,8 @@ function App() {
             <Header
                 showingChangeButton={showingChangeButton}
                 setShowingRestaurants={setShowingRestaurants}
-                setShowingChangeButton={setShowingChangeButton} />
+                setShowingChangeButton={setShowingChangeButton}
+            />
             <div className="m-3">
                 <Jumbo
                     jumbotitle={jumboTitle}
