@@ -5,12 +5,14 @@ import Footer from "./Components/Footer";
 import Jumbo from './Components/Jumbo'
 
 const App = () => {
+
+  const jumboHeaderHome = 'Food. Delivered.';
+  const jumboTextHome = 'Order your favourite food from local restaurants, right to your door.'
+
   return (
     <div className="App">
       <Header />
-      <div className="m-3">
       <Jumbo />
-    </div>
       <Footer />
     </div>
   );
