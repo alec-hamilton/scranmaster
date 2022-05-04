@@ -1,12 +1,7 @@
 import jumboimg from './burgers.jpg';
 import jumboimgmd from './burgers-md.jpg';
 
-const Jumbo = ({jumbotitle, jumbotext, showingRestaurants}) => {
-
-    let padding = 'p-3';
-    if (!showingRestaurants) {
-        padding = 'p-5';
-    }
+const Jumbo = ({jumboTitle, jumboText}) => {
 
     return (
         <div className="card border-0 p-0 bg-primary rounded-0">
@@ -17,9 +12,9 @@ const Jumbo = ({jumbotitle, jumbotext, showingRestaurants}) => {
                     <img src={jumboimg} className="card-img-top p-0" alt=""/>
                 </picture>
                 <div
-                    className={"card-img-overlay col-lg-6 col-10 h-50 m-auto bg-white bg-opacity-75 rounded-0" + padding}>
-                    <h1 className="card-title m-0 p-0 display-4 text-info"><strong>{jumbotitle}</strong></h1>
-                    <p className="card-text m-0 p-0">{jumbotext}</p>
+                    className={"card-img-overlay col-lg-6 col-10 h-50 m-auto bg-white bg-opacity-75 rounded-0"}>
+                    <h1 className="card-text m-5 p-2 text-info"><strong>{jumboTitle}</strong></h1>
+                    <h4 className="card-text m-0 p-0 ">{jumboText}</h4>
                 </div>
             </div>
         </div>

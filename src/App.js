@@ -13,8 +13,44 @@ function App() {
     const jumboTextInit = 'Order your favourite food from local restaurants, right to your door.';
     const [jumboTitle, setJumboTitle] = useState(jumboTitleInit);
     const [jumboText, setJumboText] = useState(jumboTextInit);
-    const [showingRestaurants, setShowingRestaurants] = useState(true);
+    const [restaurantID, setRestaurantID] = useState('');
+    const [menuItems, setMenuItems] = useState([]);
+    const [showingRestaurants, setShowingRestaurants] = useState('d-block');
+    const [showingChangeButton, setShowingChangeButton] = useState('d-none');
+    const [showingMenuItems, setShowingMenuItems] = useState('d-block');
 
+    useEffect(() => {
+
+        if (restaurantID === '') {
+            return;
+        }
+
+        fetchMenu()
+            .then((menuData) => {
+                setMenuItems(menuData);
+                setJumboTitle(menuData.restaurant);
+                setJumboText('');
+                setShowingRestaurants('d-none');
+                setShowingChangeButton('d-block');
+                setShowingMenuItems('d-block');
+            })
+            .catch((e) => {
+                console.log(e.message);
+            })
+    },
+        [restaurantID]
+    );
+
+    const fetchMenu = async () => {
+
+        const response = await fetch('http://localhost:8080/restaurants/' + restaurantID);
+
+        if (!response.ok) {
+            throw new Error('Data could not be fetched.')
+        }
+
+        return await response.json();
+    }
 
     const fetchData = async () => {
         const response = await fetch('http://localhost:8080/restaurants');
@@ -37,23 +73,35 @@ function App() {
         }, []
     );
 
-    function handleButtonClick() {
-        setJumboTitle('Wendys');
-        setJumboText('');
-        setShowingRestaurants(false);
+
+    function handleBackButton() {
+        setShowingMenuItems('d-none');
+        setShowingRestaurants('d-block');
+        setJumboTitle(jumboTitleInit);
+        setJumboText(jumboTextInit);
+        setShowingChangeButton('d-none');
     }
 
     return (
         <div className="App">
-            <Header/>
+            <Header
+                showingChangeButton={showingChangeButton}
+                handleBackButton={handleBackButton}
+            />
             <div className="m-3">
                 <Jumbo
-                    jumbotitle={jumboTitle}
-                    jumbotext={jumboText}
+                    jumboTitle={jumboTitle}
+                    jumboText={jumboText}
                     showingRestaurants={showingRestaurants}
                 />
+                <MainComponent
+                    restaurantItems={restaurantItems}
+                    setRestaurantID={setRestaurantID}
+                    menuItems={menuItems}
+                    showingRestaurants={showingRestaurants}
+                    showingMenuItems={showingMenuItems}
+                />
             </div>
-            <MainComponent restaurantItems={restaurantItems}/>
             <Footer/>
         </div>
     );

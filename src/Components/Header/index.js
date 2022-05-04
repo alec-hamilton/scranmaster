@@ -1,12 +1,21 @@
-const Header = () => {
+const Header = ({showingChangeButton, handleBackButton}) => {
+
     return (
         <nav className="
-        navbar container-fluid px-sm-3 mt-2
-        shadow-sm justify-content-sm-start
-        justify-content-center border-bottom"
+        navbar d-flex flex-row container-fluid px-sm-3 mt-2
+        shadow-sm border-bottom justify-content-between"
         >
-            <h5 className="text-info">Food</h5>
-            <h5>Delivery</h5>
+            <div>
+                <h5>
+                    <div className="text-info">Food
+                        <span className="text-dark">Delivery</span></div>
+                </h5>
+            </div>
+            <div className={showingChangeButton} >
+                <button className={"btn text-primary fw-bold btn-outline-light"  } onClick={handleBackButton}>
+                    {"<<  "} Change Restaurant
+                </button>
+            </div>
         </nav>
     );
 }
