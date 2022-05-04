@@ -7,34 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {useEffect, useState} from "react";
 import React from 'react';
-
-function ModalDemo() {
-    return (
-        <div className="py-2">
-            <button className="btn btn-dark" data-bs-target="#myModal" data-bs-toggle="modal">
-                Show modal
-            </button>
-            <div className="modal" tabIndex="-1" id="myModal">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title">Modal title</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
-                            <p>Modal body text goes here.</p>
-
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
+import Modal from "./Components/Modal"
 
 function App() {
 
@@ -106,23 +79,6 @@ function App() {
         }, []
     );
 
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    const [time, setTime] = useState(0);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setTime((prevTime) => prevTime +1);
-        }, 1000);
-
-        return () => clearInterval(interval);
-    }, []);
-
-
-
     return (
         <div className="App">
             <Header/>
@@ -140,7 +96,7 @@ function App() {
                     menuItems={menuItems}
                 />
             </div>
-            <ModalDemo />
+            <Modal />
     <Footer/>
 </div>
 )
