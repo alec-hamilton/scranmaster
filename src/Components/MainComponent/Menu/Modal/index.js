@@ -11,7 +11,14 @@ const Modal = ({placeOrder, orderResponse}) => {
     const futureDate = new Date(currentDate.getTime() + orderWait*1000)
 
     const deliveryHour = futureDate.getHours();
-    const deliveryMins = futureDate.getMinutes();
+    let deliveryMins = 0;
+
+    if(futureDate.getMinutes()<10) {
+        deliveryMins = '0'+futureDate.getMinutes();
+    }
+    else {
+        deliveryMins = futureDate.getMinutes();
+    }
 
 
     useEffect(() => {
@@ -46,10 +53,10 @@ const Modal = ({placeOrder, orderResponse}) => {
             <div className="modal" tabIndex="-1" id="myModal">
                 <div className="modal-dialog">
                     <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title">Thank You</h5>
+                        <div className="modal-header p-2">
+                            <h6 className="modal-title"><strong>Thank You</strong></h6>
                         </div>
-                        <div className="modal-body">
+                        <div className="modal-body text-start px-1 py-0 m-0">
                             <p>The restaurant has received your order.</p>
                             <p>Estimated time of arrival <span className="text-info">{deliveryHour + ':' + deliveryMins}</span></p>
                             <div className="progress">
@@ -58,8 +65,8 @@ const Modal = ({placeOrder, orderResponse}) => {
                             </div>
                             <p>Your order is being prepared</p>
                         </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <div className="modal-footer p-0 m-1">
+                            <button type="button" className="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
