@@ -1,7 +1,5 @@
 const Restaurant = ({item, setRestaurantID}) => {
 
-
-
     const restaurantClick = () => {
         let restaurantID = item.id;
         setRestaurantID(restaurantID);

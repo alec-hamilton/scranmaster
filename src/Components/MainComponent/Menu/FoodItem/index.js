@@ -6,10 +6,6 @@ const FoodItem = ({foodItems}) => {
         side = 'side';
     }
 
-
-
-
-
     return (
         <div className="text-start card shadow border-1 border-dark rounded-1 my-3 h-100">
             <div className="p-lg-2">

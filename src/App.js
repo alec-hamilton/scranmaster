@@ -14,11 +14,8 @@ function App() {
     const [jumboTitle, setJumboTitle] = useState(jumboTitleInit);
     const [jumboText, setJumboText] = useState(jumboTextInit);
     const [showingRestaurants, setShowingRestaurants] = useState(true);
-
     const [restaurantID, setRestaurantID] = useState('');
-
     const [menuItems, setMenuitems] = useState([]);
-
 
     useEffect(() => {
 
@@ -49,8 +46,6 @@ function App() {
 
         return await response.json();
     }
-
-
 
     const fetchData = async () => {
         const response = await fetch('http://localhost:8080/restaurants');
