@@ -11,9 +11,10 @@ const Header = ({showingChangeButton, handleBackButton}) => {
                         <span className="text-dark">Delivery</span></div>
                 </h5>
             </div>
-
-            <div className={"text-primary fw-bold " + showingChangeButton } onClick={handleBackButton}>
-                {"<<"}Change Restaurant
+            <div className={showingChangeButton} >
+                <button className={"btn text-primary fw-bold btn-outline-light"  } onClick={handleBackButton}>
+                    {"<<"}Change Restaurant
+                </button>
             </div>
         </nav>
     );
