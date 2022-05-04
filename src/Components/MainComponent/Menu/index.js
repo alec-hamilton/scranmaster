@@ -8,7 +8,6 @@ const Menu = ({menuItems}) => {
             <div>
             </div>
         );
-
     }
 
     return (

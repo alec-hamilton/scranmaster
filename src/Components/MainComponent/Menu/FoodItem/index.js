@@ -14,7 +14,6 @@ const FoodItem = ({foodItems}) => {
                 <p className="badge bg-primary me-1 ">{foodItems.foodType}</p>
                 <p className="badge bg-warning me-1">{side}</p>
                 <p className="fs-6 py-1 my-0 fw-bold">£{foodItems.price.toFixed(2)}</p>
-
             </div>
         </div>
     );
