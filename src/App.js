@@ -4,8 +4,37 @@ import Footer from "./Components/Footer";
 import Jumbo from "./Components/Jumbo";
 import MainComponent from "./Components/MainComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {useEffect, useState} from "react";
+import React from 'react';
 
+function ModalDemo() {
+    return (
+        <div className="py-2">
+            <button className="btn btn-dark" data-bs-target="#myModal" data-bs-toggle="modal">
+                Show modal
+            </button>
+            <div className="modal" tabIndex="-1" id="myModal">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title">Modal title</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <p>Modal body text goes here.</p>
+
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 function App() {
 
@@ -25,22 +54,22 @@ function App() {
 
     useEffect(() => {
 
-        if (restaurantID === '') {
-            return;
-        }
+            if (restaurantID === '') {
+                return;
+            }
 
-        console.log(restaurantID);
-        fetchMenu()
-            .then((menuData) => {
-                setMenuitems(menuData);
-                setJumboTitle(menuData.restaurant);
-                setJumboText('');
-            })
-            .catch((e) => {
-                console.log(e.message);
-            })
+            console.log(restaurantID);
+            fetchMenu()
+                .then((menuData) => {
+                    setMenuitems(menuData);
+                    setJumboTitle(menuData.restaurant);
+                    setJumboText('');
+                })
+                .catch((e) => {
+                    console.log(e.message);
+                })
 
-    },
+        },
         [restaurantID]
     );
 
@@ -54,7 +83,6 @@ function App() {
 
         return await response.json();
     }
-
 
 
     const fetchData = async () => {
@@ -78,10 +106,26 @@ function App() {
         }, []
     );
 
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const [time, setTime] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTime((prevTime) => prevTime +1);
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+
+
     return (
         <div className="App">
             <Header/>
-
             <div className="m-3">
                 <Jumbo
                     jumboTitle={jumboTitle}
@@ -96,32 +140,11 @@ function App() {
                     menuItems={menuItems}
                 />
             </div>
-            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Launch demo modal
-            </button>
-
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close">test</button>
-                        </div>
-                        <div className="modal-body">
-                            ...
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <Footer />
-        </div>
-    );
+            <ModalDemo />
+    <Footer/>
+</div>
+)
+    ;
 }
 
 export default App;
