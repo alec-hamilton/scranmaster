@@ -7,7 +7,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {useEffect, useState} from "react";
 import React from 'react';
-import Modal from "./Components/Modal"
 
 function App() {
 
@@ -31,7 +30,7 @@ function App() {
                 return;
             }
 
-            console.log(restaurantID);
+
             fetchMenu()
                 .then((menuData) => {
                     setMenuitems(menuData);
@@ -96,7 +95,6 @@ function App() {
                     menuItems={menuItems}
                 />
             </div>
-            <Modal />
     <Footer/>
 </div>
 )
