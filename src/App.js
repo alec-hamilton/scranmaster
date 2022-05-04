@@ -13,9 +13,10 @@ function App() {
     const jumboTextInit = 'Order your favourite food from local restaurants, right to your door.';
     const [jumboTitle, setJumboTitle] = useState(jumboTitleInit);
     const [jumboText, setJumboText] = useState(jumboTextInit);
-    const [showingRestaurants, setShowingRestaurants] = useState(true);
     const [restaurantID, setRestaurantID] = useState('');
     const [menuItems, setMenuitems] = useState([]);
+    const [showingRestaurants, setShowingRestaurants] = useState('visible');
+    const [showingChangeButton, setShowingChangeButton] = useState('invisible');
 
     useEffect(() => {
 
@@ -68,19 +69,30 @@ function App() {
         }, []
     );
 
-    function handleButtonClick() {
-        setJumboTitle('Wendys');
-        setJumboText('');
-        setShowingRestaurants(false);
+
+    function handleToggleButton() {
+        setShowingChangeButton(() => {
+            return 'visible';
+        })
+        setShowingRestaurants(() => {
+            return 'invisible';
+        })
     }
 
     return (
         <div className="App">
-            <Header/>
+            <button onClick={handleToggleButton}>Toggle</button>
+            <Header
+                showingChangeButton={showingChangeButton}
+                setShowingRestaurants={setShowingRestaurants}
+                setShowingChangeButton={setShowingChangeButton}
+            />
             <div className="m-3">
                 <Jumbo
                     jumbotitle={jumboTitle}
+                    setJumboTitle={setJumboTitle}
                     jumbotext={jumboText}
+                    setJumboText={setJumboText}
                     showingRestaurants={showingRestaurants}
                 />
                 <MainComponent
