@@ -79,6 +79,7 @@ function App() {
         setShowingRestaurants('d-block');
         setJumboTitle(jumboTitleInit);
         setJumboText(jumboTextInit);
+        setShowingChangeButton('d-none');
     }
 
     return (

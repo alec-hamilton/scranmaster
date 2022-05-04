@@ -1,4 +1,4 @@
-const Header = ({showingChangeButton}, {handleBackButton}) => {
+const Header = ({showingChangeButton, handleBackButton}) => {
 
     return (
         <nav className="
