@@ -1,7 +1,7 @@
 import Restaurants from "./Restaurants";
 import Menu from "./Menu";
 
-const MainComponent = ({restaurantItems, setRestaurantID, menuItems, showingRestaurants, showingMenuItems}) => {
+const MainComponent = ({restaurantItems, setRestaurantID, menuItems, showingRestaurants, showingMenuItems, setMenuItems, showingEachItem, setShowingEachItem}) => {
 
     return (
         <>
@@ -14,6 +14,9 @@ const MainComponent = ({restaurantItems, setRestaurantID, menuItems, showingRest
         <Menu
             menuItems={menuItems}
             showingMenuItems={showingMenuItems}
+            setMenuItems={setMenuItems}
+            showingEachItem={showingEachItem}
+            setShowingEachItem={setShowingEachItem}
         />
         </>
     );

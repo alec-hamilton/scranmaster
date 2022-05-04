@@ -18,6 +18,7 @@ function App() {
     const [showingRestaurants, setShowingRestaurants] = useState('d-block');
     const [showingChangeButton, setShowingChangeButton] = useState('d-none');
     const [showingMenuItems, setShowingMenuItems] = useState('d-block');
+    const [showingEachItem, setShowingEachItem] = useState('d-block')
 
     useEffect(() => {
 
@@ -80,6 +81,7 @@ function App() {
         setJumboTitle(jumboTitleInit);
         setJumboText(jumboTextInit);
         setShowingChangeButton('d-none');
+        setRestaurantID('');
     }
 
     return (
@@ -98,8 +100,11 @@ function App() {
                     restaurantItems={restaurantItems}
                     setRestaurantID={setRestaurantID}
                     menuItems={menuItems}
+                    setMenuItems={setMenuItems}
                     showingRestaurants={showingRestaurants}
                     showingMenuItems={showingMenuItems}
+                    showingEachItem={showingEachItem}
+                    setShowingEachItem={setShowingEachItem}
                 />
             </div>
             <Footer/>
