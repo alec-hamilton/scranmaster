@@ -28,6 +28,8 @@ function App() {
         fetchMenu()
             .then((menuData) => {
                 setMenuitems(menuData);
+                setJumboTitle(menuData.restaurant);
+                setJumboText('');
             })
             .catch((e) => {
                 console.log(e.message);
