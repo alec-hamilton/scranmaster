@@ -13,7 +13,7 @@ const Header = ({showingChangeButton, handleBackButton}) => {
             </div>
             <div className={showingChangeButton} >
                 <button className={"btn text-primary fw-bold btn-outline-light"  } onClick={handleBackButton}>
-                    {"<<"}Change Restaurant
+                    {"<<  "} Change Restaurant
                 </button>
             </div>
         </nav>
