@@ -25,7 +25,6 @@ function App() {
             return;
         }
 
-        console.log(restaurantID);
         fetchMenu()
             .then((menuData) => {
                 setMenuItems(menuData);
