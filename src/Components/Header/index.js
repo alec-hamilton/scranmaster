@@ -1,13 +1,7 @@
 const Header = (props) => {
 
-    const setShowingRestaurants = props.setShowingRestaurants;
     const showingChangeButton = props.showingChangeButton;
-    const setShowingChangeButton = props.setShowingChangeButton;
-
-    function handleBackButton() {
-        setShowingRestaurants('visible');
-        setShowingChangeButton('invisible');
-    }
+    const handleBackButton = props.handleBackButton;
 
     return (
         <nav className="

@@ -1,6 +1,6 @@
 import FoodItem from "./FoodItem";
 
-const Menu = ({menuItems}) => {
+const Menu = ({menuItems, showingMenuItems}) => {
 
     if (menuItems.foodItems === undefined) {
 
@@ -11,6 +11,7 @@ const Menu = ({menuItems}) => {
     }
 
     return (
+        <div className={showingMenuItems} >
         <div className="d-flex flex-wrap justify-content-start">
             {menuItems.foodItems.map((foodItems, index) => {
                     return (
@@ -20,6 +21,7 @@ const Menu = ({menuItems}) => {
                     );
                 }
             )}
+        </div>
         </div>
     );
 }

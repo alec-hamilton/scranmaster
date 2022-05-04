@@ -1,8 +1,9 @@
 import Restaurant from "./Restaurant";
 
-const Restaurants = ({restaurantItems, setRestaurantID}) => {
+const Restaurants = ({restaurantItems, setRestaurantID, showingRestaurants}) => {
 
     return (
+        <div className={showingRestaurants}>
         <div className="row">
             {restaurantItems.map((item, index) => {
                     return (
@@ -12,6 +13,7 @@ const Restaurants = ({restaurantItems, setRestaurantID}) => {
                     );
                 }
             )}
+        </div>
         </div>
     );
 }

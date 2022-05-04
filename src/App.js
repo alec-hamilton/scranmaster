@@ -14,9 +14,10 @@ function App() {
     const [jumboTitle, setJumboTitle] = useState(jumboTitleInit);
     const [jumboText, setJumboText] = useState(jumboTextInit);
     const [restaurantID, setRestaurantID] = useState('');
-    const [menuItems, setMenuitems] = useState([]);
-    const [showingRestaurants, setShowingRestaurants] = useState('visible');
-    const [showingChangeButton, setShowingChangeButton] = useState('invisible');
+    const [menuItems, setMenuItems] = useState([]);
+    const [showingRestaurants, setShowingRestaurants] = useState('d-block');
+    const [showingChangeButton, setShowingChangeButton] = useState('d-none');
+    const [showingMenuItems, setShowingMenuItems] = useState('d-block');
 
     useEffect(() => {
 
@@ -27,9 +28,12 @@ function App() {
         console.log(restaurantID);
         fetchMenu()
             .then((menuData) => {
-                setMenuitems(menuData);
+                setMenuItems(menuData);
                 setJumboTitle(menuData.restaurant);
                 setJumboText('');
+                setShowingRestaurants('d-none');
+                setShowingChangeButton('d-block');
+                setShowingMenuItems('d-block');
             })
             .catch((e) => {
                 console.log(e.message);
@@ -71,35 +75,31 @@ function App() {
     );
 
 
-    function handleToggleButton() {
-        setShowingChangeButton(() => {
-            return 'visible';
-        })
-        setShowingRestaurants(() => {
-            return 'invisible';
-        })
+    function handleBackButton() {
+        setShowingMenuItems('d-none');
+        setShowingRestaurants('d-block');
+        setJumboTitle(jumboTitleInit);
+        setJumboText(jumboTextInit);
     }
 
     return (
         <div className="App">
-            <button onClick={handleToggleButton}>Toggle</button>
             <Header
                 showingChangeButton={showingChangeButton}
-                setShowingRestaurants={setShowingRestaurants}
-                setShowingChangeButton={setShowingChangeButton}
+                handleBackButton={handleBackButton}
             />
             <div className="m-3">
                 <Jumbo
-                    jumbotitle={jumboTitle}
-                    setJumboTitle={setJumboTitle}
-                    jumbotext={jumboText}
-                    setJumboText={setJumboText}
+                    jumboTitle={jumboTitle}
+                    jumboText={jumboText}
                     showingRestaurants={showingRestaurants}
                 />
                 <MainComponent
                     restaurantItems={restaurantItems}
                     setRestaurantID={setRestaurantID}
                     menuItems={menuItems}
+                    showingRestaurants={showingRestaurants}
+                    showingMenuItems={showingMenuItems}
                 />
             </div>
             <Footer/>
