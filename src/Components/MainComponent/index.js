@@ -5,12 +5,16 @@ const MainComponent = ({restaurantItems, setRestaurantID, menuItems, showingRest
 
     return (
         <>
-        <Restaurants className="container"
-                     restaurantItems={restaurantItems}
-                     setRestaurantID={setRestaurantID}
-                     showingRestaurants={showingRestaurants}
+        <Restaurants
+            className="container"
+            restaurantItems={restaurantItems}
+            setRestaurantID={setRestaurantID}
+            showingRestaurants={showingRestaurants}
         />
-        <Menu menuItems={menuItems} showingMenuItems={showingMenuItems}/>
+        <Menu
+            menuItems={menuItems}
+            showingMenuItems={showingMenuItems}
+        />
         </>
     );
 }

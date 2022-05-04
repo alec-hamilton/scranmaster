@@ -1,7 +1,4 @@
-const Header = (props) => {
-
-    const showingChangeButton = props.showingChangeButton;
-    const handleBackButton = props.handleBackButton;
+const Header = ({showingChangeButton}, {handleBackButton}) => {
 
     return (
         <nav className="
