@@ -1,12 +1,15 @@
-const Restaurant = (props) => {
+const Restaurant = ({item, setRestaurantID}) => {
 
-    const {item} = props;
+    const restaurantClick = () => {
+        let restaurantID = item.id;
+        setRestaurantID(restaurantID);
+    }
 
     return (
-        <div className="text-center card border-1 border-info rounded-1 my-2 mx-3 mx-lg-1">
-            <div>
+        <div className="text-center card border-1 border-info rounded-1 my-3">
+            <button onClick={restaurantClick} className="btn info">
                 <h2 className="card-title p-4 px-lg-3">{item.name}</h2>
-            </div>
+            </button>
         </div>
     );
 }

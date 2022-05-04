@@ -1,13 +1,12 @@
 import Restaurants from "./Restaurants";
+import Menu from "./Menu";
 
-const MainComponent = (props) => {
-
-    const restaurantItems = props.restaurantItems;
-    const showingRestaurants = props.showingRestaurants;
+const MainComponent = ({restaurantItems, setRestaurantID, menuItems}) => {
 
     return (
         <>
-            <Restaurants showingRestaurants={showingRestaurants} restaurantItems={restaurantItems}/>
+        <Restaurants className="container" restaurantItems={restaurantItems} setRestaurantID={setRestaurantID} />
+        <Menu menuItems={menuItems}/>
         </>
     );
 }
