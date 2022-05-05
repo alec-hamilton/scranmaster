@@ -25,7 +25,6 @@ const QuantityButtons = ({foodItem, addToOrderItems, orderItems, subtractFromOrd
     }
 
     let qty = 0;
-
     const index = orderItems.findIndex(filterItems);
 
     if (index !== -1) {

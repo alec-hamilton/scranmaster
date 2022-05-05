@@ -32,7 +32,6 @@ const Menu = ({menuItems, showingMenuItems}) => {
 
         if (index !== -1) {
             orderItems[index].quantity -= 1;
-
             if (orderItems[index].quantity === 0) {
                 orderItems.splice(index,1);
             }
