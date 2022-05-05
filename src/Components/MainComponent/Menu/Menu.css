@@ -1,0 +1,5 @@
+.btn-default:hover, .btn-default:focus, .btn-default:active {
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
+    color: #ffffff;
+}

@@ -1,6 +1,7 @@
 import FoodItem from "./FoodItem";
 import {useEffect, useState} from "react";
 import OrderList from "./OrderList";
+import './Menu.css';
 
 const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuItems}) => {
     const [clickValue, setClickValue] = useState([]);
@@ -96,17 +97,17 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
         }
     }
 
-
     foodTypeArray.forEach((data, index) => {
-        reducedFoodTypeArr.push(<button className="btn text-dark" onClick={handleFilterButton} value={data}
-                                        key={index}>{data}</button>)
+        reducedFoodTypeArr.push(
+            <button className="btn btn-default border border-0" onClick={handleFilterButton} value={data} key={index}>{data}</button>
+        )
     })
 
     console.log(reducedFoodTypeArr);
 
     return (
         <div className={showingMenuItems}>
-            <div className="row">
+            <div className="dropdown row">
                 <ul>
                     {reducedFoodTypeArr}
                 </ul>
