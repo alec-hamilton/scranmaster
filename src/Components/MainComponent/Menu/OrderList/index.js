@@ -2,7 +2,7 @@ import './styles.css';
 
 const OrderList = ({orderItems}) => {
     return (
-        <div className="card w-100 mt-3 border-0 bg-light text-start custom-position">
+        <div className="card w-100 mt-3 border-0 bg-light text-start custom-position ms-lg-1">
             <div className="card-body">
                 <p className="card-title border-0 bg-light text-start fw-bold text-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"

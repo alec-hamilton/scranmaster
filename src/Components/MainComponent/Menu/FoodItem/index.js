@@ -9,7 +9,7 @@ const FoodItem = ({foodItem, addToOrderItems, orderItems, subtractFromOrderItems
     }
 
     return (
-        <div className="text-start card shadow border-1 border-dark rounded-1 my-3">
+        <div className="text-start card shadow border-1 border-dark rounded-1 my-2">
             <div className="d-flex flex-column justify-content-between h-100">
                 <div className="card-body">
                     <p className="fs-6 card-title fw-bold">{foodItem.foodName}</p>
