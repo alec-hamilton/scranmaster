@@ -3,10 +3,12 @@ import OrderButton from "./OrderButton"
 import Modal from './Modal'
 import {useState} from "react";
 import PostOrder from "./PostOrder";
+import {useEffect, useState} from "react";
+import OrderList from "./OrderList";
 
 const Menu = ({menuItems, showingMenuItems}) => {
 
-    const initOrderData = {
+const initOrderData = {
         "items": [
             {"name": "example", "price": 12.49, "qty": 1},
             {"name": "example 2", "price": 12.30, "qty": 1}
@@ -17,6 +19,54 @@ const Menu = ({menuItems, showingMenuItems}) => {
     const [placeOrder, setPlaceOrder] = useState(false);
     const [orderResponse, setOrderResponse] = useState({});
     const [orderData, setOrderData] = useState(initOrderData);
+  
+  
+    const [orderItems, setOrderItems] = useState([]);
+    const [subTotal, setSubTotal] = useState(0);
+    const [total, setTotal] = useState(0);
+
+    useEffect(() => {
+        setTotal(subTotal + 2.49);
+    }, [subTotal])
+
+    const addToOrderItems = (orderItem) => {
+
+        const filterItems = (item) => {
+            return item.name === orderItem.name;
+        }
+
+        const index = orderItems.findIndex(filterItems);
+
+        if (index === -1) {
+            setOrderItems([...orderItems, orderItem]);
+            let sum = subTotal;
+            setSubTotal(sum += orderItem.price);
+        } else {
+            orderItems[index].quantity += 1;
+            setOrderItems([...orderItems]);
+            let sum = subTotal;
+            setSubTotal(sum += orderItem.price);
+        }
+    }
+
+    const subtractFromOrderItems = (orderItem) => {
+
+        const filterItems = (item) => {
+            return item.name === orderItem.name;
+        }
+
+        const index = orderItems.findIndex(filterItems);
+
+        if (index !== -1) {
+            orderItems[index].quantity -= 1;
+            let sum = subTotal;
+            setSubTotal(sum - orderItem.price);
+            if (orderItems[index].quantity === 0) {
+                orderItems.splice(index, 1);
+            }
+            setOrderItems([...orderItems]);
+        }
+    }
 
     if (menuItems.foodItems === undefined) {
         return (
@@ -26,13 +76,17 @@ const Menu = ({menuItems, showingMenuItems}) => {
     }
 
     return (
-        <>
-            <div className={showingMenuItems}>
-                <div className="d-flex flex-wrap justify-content-start">
-                    {menuItems.foodItems.map((foodItems, index) => {
+        <div className={showingMenuItems}>
+            <div className="d-flex flex-column flex-lg-row ">
+                <div className="d-flex flex-wrap justify-content-start col-12 col-lg-10">
+                    {menuItems.foodItems.map((foodItem, index) => {
                             return (
-                                <div className="col-12 col-lg-2 px-1 my-1" key={index}>
-                                    <FoodItem foodItems={foodItems}/>
+                                <div className="col-12 col-lg-2 px-1 my-1 card-group" key={index}>
+                                    <FoodItem foodItem={foodItem}
+                                              addToOrderItems={addToOrderItems}
+                                              orderItems={orderItems}
+                                              subtractFromOrderItems={subtractFromOrderItems}
+                                    />
                                 </div>
                             );
                         }

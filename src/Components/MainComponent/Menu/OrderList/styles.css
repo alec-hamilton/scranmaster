@@ -1,0 +1,13 @@
+.custom-position {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+@media only screen and (min-width: 960px) {
+    .custom-position {
+        position: static;
+    }
+}
