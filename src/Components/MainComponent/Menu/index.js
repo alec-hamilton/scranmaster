@@ -1,25 +1,57 @@
 import FoodItem from "./FoodItem";
 import {useEffect, useState} from "react";
+import OrderList from "./OrderList";
 
 const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuItems}) => {
     const [clickValue, setClickValue] = useState([]);
 
-    // const [selectedButton, setSelectedButton] = useState('');
+    useEffect(() => {
+            console.log(menuItems);
+        },
+        [menuItems]);
 
     useEffect(() => {
-          console.log(menuItems);
-      },
-      [menuItems]);
+            console.log(filteredMenuItems);
+        },
+        [filteredMenuItems]);
 
-    useEffect(() => {
-          console.log(filteredMenuItems);
-      },
-      [filteredMenuItems]);
-
-    // console.log(menuItems);
     let menu = menuItems.foodItems;
     let filteredMenu = filteredMenuItems.foodItems;
 
+    const [orderItems, setOrderItems] = useState([]);
+
+    const addToOrderItems = (orderItem) => {
+
+        const filterItems = (item) => {
+            return item.name === orderItem.name;
+        }
+
+        const index = orderItems.findIndex(filterItems);
+
+        if (index === -1) {
+            setOrderItems([...orderItems, orderItem]);
+        } else {
+            orderItems[index].quantity += 1;
+            setOrderItems([...orderItems]);
+        }
+    }
+
+    const subtractFromOrderItems = (orderItem) => {
+
+        const filterItems = (item) => {
+            return item.name === orderItem.name;
+        }
+
+        const index = orderItems.findIndex(filterItems);
+
+        if (index !== -1) {
+            orderItems[index].quantity -= 1;
+            if (orderItems[index].quantity === 0) {
+                orderItems.splice(index, 1);
+            }
+            setOrderItems([...orderItems]);
+        }
+    }
 
     if (menuItems.foodItems === undefined) {
         return (
@@ -27,8 +59,6 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
             </div>
         );
     }
-
-    // const [showMenu, setShowMenu] = useState('');
 
     let foodTypeArray = [];
 
@@ -43,7 +73,6 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
         }
         return foodTypeArray;
     })
-    // console.log(foodTypeArray);
 
     let reducedFoodTypeArr = [];
 
@@ -53,42 +82,24 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
         console.log(filterValue);
         console.log(clickValue);
         if (clickValue === filterValue) {
-            // setSelectedButton(() => (
-            //     'bg-light'
-            // ));
-            setFilteredMenuItems(()=>(menuItems));
-            setClickValue(()=>([]));
-            // console.log(selectedButton);
+            setFilteredMenuItems(() => (menuItems));
+            setClickValue(() => ([]));
         } else {
             let filteredArray = menu.filter((foodObj, index) =>
-              foodObj.foodType === filterValue);
+                foodObj.foodType === filterValue);
             setFilteredMenuItems((prevState) => ({
-                  restaurant: prevState.restaurant,
-                  foodItems: filteredArray
-              }
+                    restaurant: prevState.restaurant,
+                    foodItems: filteredArray
+                }
             ))
-            // setSelectedButton(() => (
-            //     'bg-info'
-            // ));
-            // console.log(selectedButton);
-            setClickValue(()=>(filterValue));
+            setClickValue(() => (filterValue));
         }
-        // console.log(filteredMenuItems);
-
-
-
-        // setShowMenu('d-none');
-
-
-        // return menu = filteredArray;
-        // console.log(menu);
-        // console.log(menuItems.foodItems);
-        // console.log(menuItems);
     }
 
 
     foodTypeArray.forEach((data, index) => {
-        reducedFoodTypeArr.push(<button className="btn text-dark" onClick={handleFilterButton} value={data} key={index}>{data}</button>)
+        reducedFoodTypeArr.push(<button className="btn text-dark" onClick={handleFilterButton} value={data}
+                                        key={index}>{data}</button>)
     })
 
     console.log(reducedFoodTypeArr);
@@ -96,19 +107,26 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
     return (
         <div className={showingMenuItems}>
             <div className="row">
-                <ul >
+                <ul>
                     {reducedFoodTypeArr}
                 </ul>
             </div>
-            <div className="d-flex flex-wrap justify-content-start">
-                {filteredMenu.map((foodItems, index) => {
-                        return (
-                            <div className="col-12 col-lg-2 px-1 my-1" key={index}>
-                                <FoodItem foodItems={foodItems} />
-                            </div>
-                        );
-                    }
-                )}
+            <div className="d-flex flex-column flex-lg-row ">
+                <div className="d-flex flex-wrap justify-content-start col-12 col-lg-10">
+                    {filteredMenu.map((foodItem, index) => {
+                            return (
+                                <div className="col-12 col-lg-2 px-1 my-1 card-group" key={index}>
+                                    <FoodItem foodItem={foodItem}
+                                              addToOrderItems={addToOrderItems}
+                                              orderItems={orderItems}
+                                              subtractFromOrderItems={subtractFromOrderItems}
+                                    />
+                                </div>
+                            );
+                        }
+                    )}
+                </div>
+                <OrderList className="col-lg-2 col-12" orderItems={orderItems}/>
             </div>
         </div>
     );

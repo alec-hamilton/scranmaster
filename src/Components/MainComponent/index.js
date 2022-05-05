@@ -22,7 +22,7 @@ const MainComponent = (
             setRestaurantID={setRestaurantID}
             showingRestaurants={showingRestaurants}
         />
-        <Menu
+        <Menu className="container"
             menuItems={menuItems}
             showingMenuItems={showingMenuItems}
             setMenuItems={setMenuItems}
