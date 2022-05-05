@@ -2,7 +2,7 @@ import Restaurants from "./Restaurants";
 import Menu from "./Menu";
 
 const MainComponent = (
-  {
+    {
       restaurantItems,
       setRestaurantID,
       menuItems,
@@ -11,8 +11,7 @@ const MainComponent = (
       setMenuItems,
       filteredMenuItems,
       setFilteredMenuItems
-  }
-) => {
+    }) => {
 
     return (
         <>

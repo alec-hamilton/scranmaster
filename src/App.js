@@ -5,6 +5,7 @@ import Jumbo from "./Components/Jumbo";
 import MainComponent from "./Components/MainComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {useEffect, useState} from "react";
 
 function App() {
@@ -20,7 +21,6 @@ function App() {
     const [showingRestaurants, setShowingRestaurants] = useState('d-block');
     const [showingChangeButton, setShowingChangeButton] = useState('d-none');
     const [showingMenuItems, setShowingMenuItems] = useState('d-block');
-
 
     useEffect(() => {
 

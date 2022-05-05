@@ -1,12 +1,23 @@
 import FoodItem from "./FoodItem";
-import {useState} from "react";
+import Modal from './Modal'
+import PostOrder from "./PostOrder";
+import {useEffect, useState} from "react";
 import OrderList from "./OrderList";
 import './Menu.css';
 
 const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuItems}) => {
 
     const [clickValue, setClickValue] = useState([]);
+    const [placeOrder, setPlaceOrder] = useState(false);
+    const [orderResponse, setOrderResponse] = useState({});
+    const [orderData, setOrderData] = useState({});
     const [orderItems, setOrderItems] = useState([]);
+    const [subTotal, setSubTotal] = useState(0);
+    const [total, setTotal] = useState(0);
+
+    useEffect(() => {
+        setTotal(subTotal + 2.49);
+    }, [subTotal])
 
     let menu = menuItems.foodItems;
     let filteredMenu = filteredMenuItems.foodItems;
@@ -23,9 +34,13 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
 
         if (index === -1) {
             setOrderItems([...orderItems, orderItem]);
+            let sum = subTotal;
+            setSubTotal(sum += orderItem.price);
         } else {
-            orderItems[index].quantity += 1;
+            orderItems[index].qty += 1;
             setOrderItems([...orderItems]);
+            let sum = subTotal;
+            setSubTotal(sum += orderItem.price);
         }
     }
 
@@ -38,8 +53,10 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
         const index = orderItems.findIndex(filterItems);
 
         if (index !== -1) {
-            orderItems[index].quantity -= 1;
-            if (orderItems[index].quantity === 0) {
+            orderItems[index].qty -= 1;
+            let sum = subTotal;
+            setSubTotal(sum - orderItem.price);
+            if (orderItems[index].qty === 0) {
                 orderItems.splice(index, 1);
             }
             setOrderItems([...orderItems]);
@@ -116,18 +133,29 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
                             return (
                                 <div className="col-12 col-lg-2 px-1 my-1 card-group" key={index}>
                                     <FoodItem foodItem={foodItem}
-                                              addToOrderItems={addToOrderItems}
-                                              orderItems={orderItems}
-                                              subtractFromOrderItems={subtractFromOrderItems}
+                                                  addToOrderItems={addToOrderItems}
+                                                  orderItems={orderItems}
+                                                  subtractFromOrderItems={subtractFromOrderItems}
                                     />
                                 </div>
-                            );
-                        }
-                    )}
+                                );
+                            }
+                        )}
+                    </div>
+                    <OrderList className="col-lg-2 col-12"
+                               orderItems={orderItems}
+                               subTotal={subTotal}
+                               total={total}
+                               setPlaceOrder={setPlaceOrder}
+                               setOrderData={setOrderData}
+                    />
                 </div>
-                <OrderList className="col-lg-2 col-12" orderItems={orderItems}/>
+                <Modal placeOrder={placeOrder} setPlaceOrder={setPlaceOrder} orderResponse={orderResponse}/>
+                <PostOrder placeOrder={placeOrder}
+                           setOrderResponse={setOrderResponse}
+                           orderData={orderData}
+                />
             </div>
-        </div>
     );
 }
 

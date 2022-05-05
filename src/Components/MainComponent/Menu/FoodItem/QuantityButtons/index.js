@@ -5,7 +5,7 @@ const QuantityButtons = ({foodItem, addToOrderItems, orderItems, subtractFromOrd
         let orderObject = {
             name: foodItem.foodName,
             price: foodItem.price,
-            quantity: 1,
+            qty: 1,
         }
         addToOrderItems(orderObject);
     }
@@ -15,7 +15,7 @@ const QuantityButtons = ({foodItem, addToOrderItems, orderItems, subtractFromOrd
         let orderObject = {
             name: foodItem.foodName,
             price: foodItem.price,
-            quantity: 1,
+            qty: 1,
         }
         subtractFromOrderItems(orderObject);
     }
@@ -28,7 +28,7 @@ const QuantityButtons = ({foodItem, addToOrderItems, orderItems, subtractFromOrd
     const index = orderItems.findIndex(filterItems);
 
     if (index !== -1) {
-        qty = orderItems[index].quantity;
+        qty = orderItems[index].qty;
     }
 
     return (
@@ -36,7 +36,7 @@ const QuantityButtons = ({foodItem, addToOrderItems, orderItems, subtractFromOrd
             <div className="input-group-btn">
                 <button onClick={minusClickHandle} className="btn btn-primary btn-number">-</button>
             </div>
-            <p className="py-2 px-3 m-0">{qty}</p>
+            <p className="py-1 px-2 m-0">{qty}</p>
             <div className="input-group-btn">
                 <button onClick={plusClickHandle} className="btn btn-primary btn-number">+</button>
             </div>
