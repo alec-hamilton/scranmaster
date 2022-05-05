@@ -1,5 +1,6 @@
 import FoodItem from "./FoodItem";
 import {useEffect, useState} from "react";
+import OrderList from "./OrderList";
 
 const Menu = ({menuItems, showingMenuItems}) => {
 
@@ -51,22 +52,28 @@ const Menu = ({menuItems, showingMenuItems}) => {
     }
 
     return (
-        <div className={showingMenuItems} >
-            <div className="d-flex flex-wrap justify-content-start">
-                {menuItems.foodItems.map((foodItem, index) => {
-                        return (
-                            <div className="col-12 col-lg-2 px-1 my-1 card-group" key={index}>
-                                <FoodItem foodItem={foodItem}
-                                          addToOrderItems={addToOrderItems}
-                                          orderItems={orderItems}
-                                          subtractFromOrderItems={subtractFromOrderItems}
-                                />
-                            </div>
-                        );
-                    }
-                )}
+        <>
+            <div className={showingMenuItems} >
+                <div className="d-flex">
+                    <div className="d-flex flex-wrap justify-content-start col-10">
+                        {menuItems.foodItems.map((foodItem, index) => {
+                                return (
+                                    <div className="col-12 col-lg-2 px-1 my-1 card-group" key={index}>
+                                        <FoodItem foodItem={foodItem}
+                                                  addToOrderItems={addToOrderItems}
+                                                  orderItems={orderItems}
+                                                  subtractFromOrderItems={subtractFromOrderItems}
+                                        />
+                                    </div>
+                                );
+                            }
+                        )}
+                    </div>
+                    <OrderList className="col-2" orderItems={orderItems}/>
+                </div>
             </div>
-        </div>
+
+        </>
     );
 }
 
