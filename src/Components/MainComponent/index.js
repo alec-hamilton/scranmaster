@@ -11,7 +11,7 @@ const MainComponent = ({restaurantItems, setRestaurantID, menuItems, showingRest
             setRestaurantID={setRestaurantID}
             showingRestaurants={showingRestaurants}
         />
-        <Menu
+        <Menu className="container"
             menuItems={menuItems}
             showingMenuItems={showingMenuItems}
         />
