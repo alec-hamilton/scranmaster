@@ -1,6 +1,6 @@
 const OrderButton = ({setPlaceOrder}) => {
 
-    const submitClick = (event) => {
+    const submitClick = () => {
         setPlaceOrder(true);
     }
 

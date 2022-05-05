@@ -40,7 +40,7 @@ const Menu = ({menuItems, showingMenuItems}) => {
                 </div>
             </div>
             <OrderButton setPlaceOrder={setPlaceOrder}/>
-            <Modal placeOrder={placeOrder} orderResponse={orderResponse}/>
+            <Modal placeOrder={placeOrder} setPlaceOrder={setPlaceOrder} orderResponse={orderResponse}/>
             <PostOrder placeOrder={placeOrder} setOrderResponse={setOrderResponse} orderData={orderData}/>
         </>
     );
