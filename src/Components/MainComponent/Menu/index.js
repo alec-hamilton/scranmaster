@@ -56,13 +56,14 @@ const Menu = ({menuItems, showingMenuItems}) => {
         }
     }
 
+
     if (menuItems.foodItems === undefined) {
         return (
             <div>
             </div>
         );
     }
-
+    console.log(placeOrder);
     return (
         <>
             <div className={showingMenuItems}>
@@ -89,7 +90,14 @@ const Menu = ({menuItems, showingMenuItems}) => {
                                setOrderData={setOrderData}
                     />
                 </div>
-                <Modal placeOrder={placeOrder} setPlaceOrder={setPlaceOrder} orderResponse={orderResponse}/>
+                <Modal placeOrder={placeOrder}
+                       setPlaceOrder={setPlaceOrder}
+                       orderResponse={orderResponse}
+                       setOrderData={setOrderData}
+                       setOrderItems={setOrderItems}
+                       setTotal={setTotal}
+                       setSubTotal={setSubTotal}
+                />
                 <PostOrder placeOrder={placeOrder}
                            setOrderResponse={setOrderResponse}
                            orderData={orderData}

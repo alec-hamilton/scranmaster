@@ -1,21 +1,27 @@
 import {useEffect, useState} from "react";
 
-const Modal = ({placeOrder, setPlaceOrder, orderResponse}) => {
+const Modal = ({placeOrder, setPlaceOrder, orderResponse, setOrderData, setOrderItems, setTotal, setSubTotal}) => {
 
     const closeModal = () => {
         setTime(0);
+        setOrderData({});
+        setOrderItems([]);
+        setTotal(0);
+        setSubTotal(0);
     }
+
+
+    let modalMessage = 'Your order is being prepared';
+    let btnColor = 'btn-secondary';
+    let deliveryMins;
+    let width = 0;
 
     const orderWait = orderResponse.prepTime + orderResponse.deliveryTime;
     const [time, setTime] = useState(0);
-    let width = 0;
     const [timerId, setTimerId] = useState(0);
-    let modalMessage = 'Your order is being prepared';
-    let btnColor = 'btn-secondary';
     const [currentDate, setCurrentDate] = useState(new Date());
     const futureDate = new Date(currentDate.getTime() + orderWait * 1000)
     const deliveryHour = futureDate.getHours();
-    let deliveryMins;
 
     if (futureDate.getMinutes() < 10) {
         deliveryMins = '0' + futureDate.getMinutes();
