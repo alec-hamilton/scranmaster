@@ -1,6 +1,8 @@
 import './styles.css';
+import OrderButton from "./OrderButton";
 
-const OrderList = ({orderItems, subTotal, total}) => {
+
+const OrderList = ({orderItems, subTotal, total, setPlaceOrder, setOrderData}) => {
     return (
         <div className="w-100 mt-3 border-0 bg-light text-start custom-position ms-lg-1">
             <div className="card-body">
@@ -12,7 +14,7 @@ const OrderList = ({orderItems, subTotal, total}) => {
                 <div className="list-group list-unstyled">
                     {orderItems.map((orderItem) => (
                         <li className="d-flex justify-content-between align-items-center py-1" key={orderItem.name}>{orderItem.name}
-                            <div className="badge bg-primary rounded-pill py-2">{orderItem.quantity}</div>
+                            <div className="badge bg-primary rounded-pill py-2">{orderItem.qty}</div>
                         </li>
                     ))}
                 </div>
@@ -32,6 +34,7 @@ const OrderList = ({orderItems, subTotal, total}) => {
                     <p className="fw-bold">Total</p>
                     <p className="fw-bold">£{total.toFixed(2)}</p>
                 </div>
+                <OrderButton setPlaceOrder={setPlaceOrder} setOrderData={setOrderData} total={total} orderItems={orderItems}/>
             </div>
         </div>
     );
