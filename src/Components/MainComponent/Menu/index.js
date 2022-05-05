@@ -5,6 +5,12 @@ import OrderList from "./OrderList";
 const Menu = ({menuItems, showingMenuItems}) => {
 
     const [orderItems, setOrderItems] = useState([]);
+    const [subTotal, setSubTotal] = useState(0);
+    const [total, setTotal] = useState(0);
+
+    useEffect(() => {
+        setTotal(subTotal + 2.49);
+    }, [subTotal])
 
     const addToOrderItems = (orderItem) => {
 
@@ -16,9 +22,13 @@ const Menu = ({menuItems, showingMenuItems}) => {
 
         if (index === -1) {
             setOrderItems([...orderItems, orderItem]);
+            let sum = subTotal;
+            setSubTotal(sum += orderItem.price);
         } else {
             orderItems[index].quantity += 1;
             setOrderItems([...orderItems]);
+            let sum = subTotal;
+            setSubTotal(sum += orderItem.price);
         }
     }
 
@@ -32,6 +42,8 @@ const Menu = ({menuItems, showingMenuItems}) => {
 
         if (index !== -1) {
             orderItems[index].quantity -= 1;
+            let sum = subTotal;
+            setSubTotal(sum - orderItem.price);
             if (orderItems[index].quantity === 0) {
                 orderItems.splice(index, 1);
             }
@@ -63,7 +75,7 @@ const Menu = ({menuItems, showingMenuItems}) => {
                         }
                     )}
                 </div>
-                <OrderList className="col-lg-2 col-12" orderItems={orderItems}/>
+                <OrderList className="col-lg-2 col-12" orderItems={orderItems} subTotal={subTotal} total={total}/>
             </div>
         </div>
     );

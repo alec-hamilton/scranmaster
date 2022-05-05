@@ -13,7 +13,7 @@ const FoodItem = ({foodItem, addToOrderItems, orderItems, subtractFromOrderItems
             <div className="d-flex flex-column justify-content-between h-100">
                 <div className="card-body">
                     <p className="fs-6 card-title fw-bold">{foodItem.foodName}</p>
-                    <p className="badge bg-success me-1 mb-1">Calories: {foodItem.calories}</p>
+                    <p className="badge bg-info me-1 mb-1">Calories: {foodItem.calories}</p>
                     <p className="badge bg-primary me-1 mb-1">{foodItem.foodType}</p>
                     <p className="badge bg-warning me-1 mb-1 text-dark">{side}</p>
                 </div>
