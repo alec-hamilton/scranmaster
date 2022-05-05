@@ -72,7 +72,6 @@ const Menu = ({menuItems, showingMenuItems}) => {
                     <OrderList className="col-lg-2 col-12" orderItems={orderItems}/>
                 </div>
             </div>
-
         </>
     );
 }
