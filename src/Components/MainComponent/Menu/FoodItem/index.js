@@ -17,7 +17,7 @@ const FoodItem = ({foodItem, addToOrderItems, orderItems, subtractFromOrderItems
                         <p className="badge bg-warning me-1 mb-1 text-dark">{side}</p>
                     </div>
                     <div className="card-footer d-flex flex-nowrap align-items-center border-0 bg-transparent">
-                        <p className="  fs-6 py-1 my-0 fw-bold">£{foodItem.price.toFixed(2)}</p>
+                        <p className="fs-6 py-1 my-0 fw-bold">£{foodItem.price.toFixed(2)}</p>
                         <QuantityButtons foodItem={foodItem}
                                          addToOrderItems={addToOrderItems}
                                          orderItems={orderItems}

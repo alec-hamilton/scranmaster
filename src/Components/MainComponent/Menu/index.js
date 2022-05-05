@@ -133,9 +133,9 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
                             return (
                                 <div className="col-12 col-lg-2 px-1 my-1 card-group" key={index}>
                                     <FoodItem foodItem={foodItem}
-                                                  addToOrderItems={addToOrderItems}
-                                                  orderItems={orderItems}
-                                                  subtractFromOrderItems={subtractFromOrderItems}
+                                              addToOrderItems={addToOrderItems}
+                                              orderItems={orderItems}
+                                              subtractFromOrderItems={subtractFromOrderItems}
                                     />
                                 </div>
                                 );
