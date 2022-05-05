@@ -4,6 +4,8 @@ import {useEffect, useState} from "react";
 const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuItems}) => {
     const [clickValue, setClickValue] = useState([]);
 
+    // const [selectedButton, setSelectedButton] = useState('');
+
     useEffect(() => {
           console.log(menuItems);
       },
@@ -51,8 +53,12 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
         console.log(filterValue);
         console.log(clickValue);
         if (clickValue === filterValue) {
+            // setSelectedButton(() => (
+            //     'bg-light'
+            // ));
             setFilteredMenuItems(()=>(menuItems));
             setClickValue(()=>([]));
+            // console.log(selectedButton);
         } else {
             let filteredArray = menu.filter((foodObj, index) =>
               foodObj.foodType === filterValue);
@@ -61,6 +67,10 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
                   foodItems: filteredArray
               }
             ))
+            // setSelectedButton(() => (
+            //     'bg-info'
+            // ));
+            // console.log(selectedButton);
             setClickValue(()=>(filterValue));
         }
         // console.log(filteredMenuItems);
@@ -78,13 +88,15 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
 
 
     foodTypeArray.forEach((data, index) => {
-        reducedFoodTypeArr.push(<button onClick={handleFilterButton} value={data} key={index}>{data}</button>)
+        reducedFoodTypeArr.push(<button className="btn text-dark" onClick={handleFilterButton} value={data} key={index}>{data}</button>)
     })
+
+    console.log(reducedFoodTypeArr);
 
     return (
         <div className={showingMenuItems}>
             <div className="row">
-                <ul>
+                <ul >
                     {reducedFoodTypeArr}
                 </ul>
             </div>
