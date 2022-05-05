@@ -1,25 +1,17 @@
 import FoodItem from "./FoodItem";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import OrderList from "./OrderList";
 import './Menu.css';
 
 const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuItems}) => {
+
     const [clickValue, setClickValue] = useState([]);
-
-    useEffect(() => {
-            console.log(menuItems);
-        },
-        [menuItems]);
-
-    useEffect(() => {
-            console.log(filteredMenuItems);
-        },
-        [filteredMenuItems]);
+    const [orderItems, setOrderItems] = useState([]);
 
     let menu = menuItems.foodItems;
     let filteredMenu = filteredMenuItems.foodItems;
-
-    const [orderItems, setOrderItems] = useState([]);
+    let foodTypeArray = [];
+    let reducedFoodTypeArr = [];
 
     const addToOrderItems = (orderItem) => {
 
@@ -61,8 +53,6 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
         );
     }
 
-    let foodTypeArray = [];
-
     menuItems.foodItems.map((foodObj) => {
         if (foodObj.foodType === undefined) {
             foodObj.foodType = 'Other';
@@ -75,18 +65,14 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
         return foodTypeArray;
     })
 
-    let reducedFoodTypeArr = [];
-
     function handleFilterButton(event) {
         event.preventDefault();
         let filterValue = event.target.value;
-        console.log(filterValue);
-        console.log(clickValue);
         if (clickValue === filterValue) {
             setFilteredMenuItems(() => (menuItems));
             setClickValue(() => ([]));
         } else {
-            let filteredArray = menu.filter((foodObj, index) =>
+            let filteredArray = menu.filter((foodObj) =>
                 foodObj.foodType === filterValue);
             setFilteredMenuItems((prevState) => ({
                     restaurant: prevState.restaurant,
@@ -99,16 +85,28 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
 
     foodTypeArray.forEach((data, index) => {
         reducedFoodTypeArr.push(
-            <button className="btn btn-default border border-0" onClick={handleFilterButton} value={data} key={index}>{data}</button>
+            <li key={index} >
+                <button className="btn btn-default border border-0" onClick={handleFilterButton} value={data}>{data}</button>
+            </li>
         )
     })
 
-    console.log(reducedFoodTypeArr);
-
     return (
         <div className={showingMenuItems}>
-            <div className="dropdown row">
-                <ul>
+            <div id="dropdown" className="dropdown" >
+                <button className="btn btn-secondary dropdown-toggle w-100 bg-info border border-info text-light my-3"
+                        type="button"
+                        id="dropdownMenu2"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    Categories
+                </button>
+                <ul className="dropdown-menu w-100 text-center" aria-labelledby="dropdownMenu2">
+                    {reducedFoodTypeArr}
+                </ul>
+            </div>
+            <div id="cat-row" className="row mt-2 ms-1">
+                <ul className="list-group list-group-horizontal list-unstyled">
                     {reducedFoodTypeArr}
                 </ul>
             </div>

@@ -3,3 +3,21 @@
     border-color: #0dcaf0;
     color: #ffffff;
 }
+
+#cat-row {
+    display: none;
+}
+
+#dropdown {
+    display: block;
+}
+
+@media only screen and (min-width: 768px) {
+    #cat-row {
+        display: block;
+    }
+
+    #dropdown {
+        display: none;
+    }
+}
