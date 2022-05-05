@@ -44,9 +44,6 @@ useEffect( () => {
         setTimerId(clearInterval(timerId))
     }
 },[time]);
-    // if (time === orderWait) {
-    //     clearInterval(interval);
-    // }
     if ((time / orderWait) * 100 < 25) {
         width = 25;
     } else if ((time / orderWait) * 100 < 50) {
@@ -61,10 +58,6 @@ useEffect( () => {
         btnColor = 'btn-danger'
 
     }
-
-
-    console.log(time);
-    console.log(placeOrder);
 
     return (
         <div className="py-2">
