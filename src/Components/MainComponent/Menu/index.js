@@ -54,8 +54,8 @@ const Menu = ({menuItems, showingMenuItems}) => {
     return (
         <>
             <div className={showingMenuItems} >
-                <div className="d-flex">
-                    <div className="d-flex flex-wrap justify-content-start col-10">
+                <div className="d-flex flex-column flex-lg-row ">
+                    <div className="d-flex flex-wrap justify-content-start col-12 col-lg-10">
                         {menuItems.foodItems.map((foodItem, index) => {
                                 return (
                                     <div className="col-12 col-lg-2 px-1 my-1 card-group" key={index}>
@@ -69,7 +69,7 @@ const Menu = ({menuItems, showingMenuItems}) => {
                             }
                         )}
                     </div>
-                    <OrderList className="col-2" orderItems={orderItems}/>
+                    <OrderList className="col-lg-2 col-12" orderItems={orderItems}/>
                 </div>
             </div>
 
