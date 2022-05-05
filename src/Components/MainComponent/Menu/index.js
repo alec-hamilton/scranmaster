@@ -1,9 +1,26 @@
 import FoodItem from "./FoodItem";
+import OrderButton from "./OrderButton"
+import Modal from './Modal'
+import {useState} from "react";
+import PostOrder from "./PostOrder";
 import {useEffect, useState} from "react";
 import OrderList from "./OrderList";
 
 const Menu = ({menuItems, showingMenuItems}) => {
 
+const initOrderData = {
+        "items": [
+            {"name": "example", "price": 12.49, "qty": 1},
+            {"name": "example 2", "price": 12.30, "qty": 1}
+        ],
+        "total": 24.79
+    };
+
+    const [placeOrder, setPlaceOrder] = useState(false);
+    const [orderResponse, setOrderResponse] = useState({});
+    const [orderData, setOrderData] = useState(initOrderData);
+  
+  
     const [orderItems, setOrderItems] = useState([]);
     const [subTotal, setSubTotal] = useState(0);
     const [total, setTotal] = useState(0);
@@ -75,9 +92,11 @@ const Menu = ({menuItems, showingMenuItems}) => {
                         }
                     )}
                 </div>
-                <OrderList className="col-lg-2 col-12" orderItems={orderItems} subTotal={subTotal} total={total}/>
             </div>
-        </div>
+            <OrderButton setPlaceOrder={setPlaceOrder}/>
+            <Modal placeOrder={placeOrder} setPlaceOrder={setPlaceOrder} orderResponse={orderResponse}/>
+            <PostOrder placeOrder={placeOrder} setOrderResponse={setOrderResponse} orderData={orderData}/>
+        </>
     );
 }
 

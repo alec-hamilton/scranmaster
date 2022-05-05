@@ -4,6 +4,7 @@ import Footer from "./Components/Footer";
 import Jumbo from "./Components/Jumbo";
 import MainComponent from "./Components/MainComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {useEffect, useState} from "react";
 
 function App() {
