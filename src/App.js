@@ -15,10 +15,11 @@ function App() {
     const [jumboText, setJumboText] = useState(jumboTextInit);
     const [restaurantID, setRestaurantID] = useState('');
     const [menuItems, setMenuItems] = useState([]);
+    const [filteredMenuItems, setFilteredMenuItems] = useState([]);
     const [showingRestaurants, setShowingRestaurants] = useState('d-block');
     const [showingChangeButton, setShowingChangeButton] = useState('d-none');
     const [showingMenuItems, setShowingMenuItems] = useState('d-block');
-    const [showingEachItem, setShowingEachItem] = useState('d-block')
+
 
     useEffect(() => {
 
@@ -29,6 +30,7 @@ function App() {
         fetchMenu()
             .then((menuData) => {
                 setMenuItems(menuData);
+                setFilteredMenuItems(menuData);
                 setJumboTitle(menuData.restaurant);
                 setJumboText('');
                 setShowingRestaurants('d-none');
@@ -103,8 +105,8 @@ function App() {
                     setMenuItems={setMenuItems}
                     showingRestaurants={showingRestaurants}
                     showingMenuItems={showingMenuItems}
-                    showingEachItem={showingEachItem}
-                    setShowingEachItem={setShowingEachItem}
+                    filteredMenuItems={filteredMenuItems}
+                    setFilteredMenuItems={setFilteredMenuItems}
                 />
             </div>
             <Footer/>
