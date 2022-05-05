@@ -1,6 +1,11 @@
-const OrderButton = ({setPlaceOrder}) => {
+const OrderButton = ({setPlaceOrder, setOrderData, orderItems, total}) => {
 
     const submitClick = () => {
+
+        setOrderData({
+            "items": orderItems,
+            "total": total,
+        });
         setPlaceOrder(true);
     }
 

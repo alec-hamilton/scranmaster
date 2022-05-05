@@ -6,8 +6,7 @@ const Modal = ({placeOrder, setPlaceOrder, orderResponse}) => {
         setTime(0);
     }
 
-    // const orderWait = orderResponse.prepTime + orderResponse.deliveryTime;
-    const orderWait = 5;
+    const orderWait = orderResponse.prepTime + orderResponse.deliveryTime;
     const [time, setTime] = useState(0);
     let width = 0;
     const [timerId, setTimerId] = useState(0);
@@ -36,14 +35,12 @@ const Modal = ({placeOrder, setPlaceOrder, orderResponse}) => {
 
     }, [placeOrder]);
 
-
-
-useEffect( () => {
-    if (time === orderWait) {
-        setPlaceOrder(false);
-        setTimerId(clearInterval(timerId))
-    }
-},[time]);
+    useEffect(() => {
+        if (time === orderWait) {
+            setPlaceOrder(false);
+            setTimerId(clearInterval(timerId))
+        }
+    }, [time]);
     if ((time / orderWait) * 100 < 25) {
         width = 25;
     } else if ((time / orderWait) * 100 < 50) {
@@ -56,7 +53,6 @@ useEffect( () => {
         width = 100;
         modalMessage = 'Order Complete - Enjoy your meal!';
         btnColor = 'btn-danger'
-
     }
 
     return (

@@ -5,7 +5,7 @@ const QuantityButtons = ({foodItem, addToOrderItems, orderItems, subtractFromOrd
         let orderObject = {
             name: foodItem.foodName,
             price: foodItem.price,
-            quantity: 1,
+            qty: 1,
         }
         addToOrderItems(orderObject);
     }
@@ -15,7 +15,7 @@ const QuantityButtons = ({foodItem, addToOrderItems, orderItems, subtractFromOrd
         let orderObject = {
             name: foodItem.foodName,
             price: foodItem.price,
-            quantity: 1,
+            qty: 1,
         }
         subtractFromOrderItems(orderObject);
     }
@@ -28,7 +28,7 @@ const QuantityButtons = ({foodItem, addToOrderItems, orderItems, subtractFromOrd
     const index = orderItems.findIndex(filterItems);
 
     if (index !== -1) {
-        qty = orderItems[index].quantity;
+        qty = orderItems[index].qty;
     }
 
     return (

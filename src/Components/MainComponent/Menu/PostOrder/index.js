@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 
-const PostOrder = ({placeOrder, setOrderResponse,orderData}) => {
+const PostOrder = ({placeOrder, setOrderResponse, orderData}) => {
 
     const customSettings = {
         method: 'POST',
@@ -17,13 +17,12 @@ const PostOrder = ({placeOrder, setOrderResponse,orderData}) => {
     const processResponseData = (data) => {
         setOrderResponse(data);
         console.log(data);
-        console.log(typeof data);
     }
-
 
     return (
         useEffect(() => {
                 if (placeOrder) {
+
                     fetch('http://localhost:8080/orders', customSettings)
                         .then(extractResponseData)
                         .then(processResponseData)
