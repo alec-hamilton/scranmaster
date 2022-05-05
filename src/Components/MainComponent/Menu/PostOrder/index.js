@@ -22,7 +22,6 @@ const PostOrder = ({placeOrder, setOrderResponse, orderData}) => {
     return (
         useEffect(() => {
                 if (placeOrder) {
-
                     fetch('http://localhost:8080/orders', customSettings)
                         .then(extractResponseData)
                         .then(processResponseData)

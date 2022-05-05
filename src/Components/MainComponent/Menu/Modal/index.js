@@ -32,7 +32,6 @@ const Modal = ({placeOrder, setPlaceOrder, orderResponse}) => {
             setCurrentDate(new Date());
             setTimerId(setInterval(timer, 1000));
         }
-
     }, [placeOrder]);
 
     useEffect(() => {
@@ -41,6 +40,7 @@ const Modal = ({placeOrder, setPlaceOrder, orderResponse}) => {
             setTimerId(clearInterval(timerId))
         }
     }, [time]);
+
     if ((time / orderWait) * 100 < 25) {
         width = 25;
     } else if ((time / orderWait) * 100 < 50) {

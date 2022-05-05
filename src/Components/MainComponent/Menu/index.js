@@ -69,14 +69,14 @@ const Menu = ({menuItems, showingMenuItems}) => {
                 <div className="d-flex flex-column flex-lg-row ">
                     <div className="d-flex flex-wrap justify-content-start col-12 col-lg-10">
                         {menuItems.foodItems.map((foodItem, index) => {
-                                return (
-                                    <div className="col-12 col-lg-2 px-1 my-1 card-group" key={index}>
-                                        <FoodItem foodItem={foodItem}
+                            return (
+                                <div className="col-12 col-lg-2 px-1 my-1 card-group" key={index}>
+                                    <FoodItem foodItem={foodItem}
                                                   addToOrderItems={addToOrderItems}
                                                   orderItems={orderItems}
                                                   subtractFromOrderItems={subtractFromOrderItems}
-                                        />
-                                    </div>
+                                    />
+                                </div>
                                 );
                             }
                         )}
