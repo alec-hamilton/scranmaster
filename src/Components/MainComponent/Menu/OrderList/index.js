@@ -11,8 +11,8 @@ const OrderList = ({orderItems, subTotal, total}) => {
                 </p>
                 <div className="list-group list-unstyled">
                     {orderItems.map((orderItem) => (
-                        <li className="d-flex justify-content-between py-2" key={orderItem.name}>{orderItem.name}
-                            <div className="badge bg-primary rounded-pill">{orderItem.quantity}</div>
+                        <li className="d-flex justify-content-between align-items-center py-1" key={orderItem.name}>{orderItem.name}
+                            <div className="badge bg-primary rounded-pill py-2">{orderItem.quantity}</div>
                         </li>
                     ))}
                 </div>

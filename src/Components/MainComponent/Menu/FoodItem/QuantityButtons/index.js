@@ -36,7 +36,7 @@ const QuantityButtons = ({foodItem, addToOrderItems, orderItems, subtractFromOrd
             <div className="input-group-btn">
                 <button onClick={minusClickHandle} className="btn btn-primary btn-number">-</button>
             </div>
-            <p className="py-2 px-3 m-0">{qty}</p>
+            <p className="py-1 px-2 m-0">{qty}</p>
             <div className="input-group-btn">
                 <button onClick={plusClickHandle} className="btn btn-primary btn-number">+</button>
             </div>

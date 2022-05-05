@@ -6,7 +6,7 @@
     z-index: 100;
 }
 
-@media only screen and (min-width: 576px) {
+@media only screen and (min-width: 960px) {
     .custom-position {
         position: static;
     }
