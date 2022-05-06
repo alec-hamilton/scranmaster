@@ -10,7 +10,6 @@ const Modal = ({placeOrder, setPlaceOrder, orderResponse, setOrderData, setOrder
         setSubTotal(0);
     }
 
-
     let modalMessage = 'Your order is being prepared';
     let btnColor = 'btn-secondary';
     let deliveryMins;
@@ -53,8 +52,10 @@ const Modal = ({placeOrder, setPlaceOrder, orderResponse, setOrderData, setOrder
         width = 50;
     } else if ((time / orderWait) * 100 < 75) {
         width = 75;
+        modalMessage = 'Order Out For Delivery';
     } else if ((time / orderWait) * 100 < 100) {
         width = 100;
+        modalMessage = 'Order Out For Delivery';
     } else {
         width = 100;
         modalMessage = 'Order Complete - Enjoy your meal!';
@@ -62,8 +63,8 @@ const Modal = ({placeOrder, setPlaceOrder, orderResponse, setOrderData, setOrder
     }
 
     return (
-        <div className="py-2">
-            <div className="modal" tabIndex="-1" id="myModal">
+        <div className="py-2" >
+            <div className="modal fade" tabIndex="-1" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header p-2">

@@ -1,8 +1,15 @@
-import {isDisabled} from "@testing-library/user-event/dist/utils";
+let disabled;
 
 const OrderButton = ({setPlaceOrder, setOrderData, orderItems, total}) => {
 
-let isDisabled = 'invisible';
+    let isDisabled = {disabled};
+
+    if (orderItems.length != 0) {
+        disabled = '';
+    }
+    else {
+        disabled = 'disabled'
+    }
 
     const submitClick = () => {
 
@@ -13,12 +20,11 @@ let isDisabled = 'invisible';
         setPlaceOrder(true);
     }
 
-    if (orderItems.length != 0) {
-        isDisabled = '';
-    }
-console.log(orderItems);
     return (
-        <button className={"btn btn-success " + isDisabled}  data-bs-target="#myModal" data-bs-toggle="modal" onClick={submitClick}>
+        <button className="btn btn-success" {...isDisabled}
+                data-bs-target="#myModal"
+                data-bs-toggle="modal"
+                onClick={submitClick}>
             Place Order
         </button>
     )
