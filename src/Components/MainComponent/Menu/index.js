@@ -63,6 +63,7 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
         }
     }
 
+
     if (menuItems.foodItems === undefined) {
         return (
             <div>
@@ -150,7 +151,14 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
                                setOrderData={setOrderData}
                     />
                 </div>
-                <Modal placeOrder={placeOrder} setPlaceOrder={setPlaceOrder} orderResponse={orderResponse}/>
+                <Modal placeOrder={placeOrder}
+                       setPlaceOrder={setPlaceOrder}
+                       orderResponse={orderResponse}
+                       setOrderData={setOrderData}
+                       setOrderItems={setOrderItems}
+                       setTotal={setTotal}
+                       setSubTotal={setSubTotal}
+                />
                 <PostOrder placeOrder={placeOrder}
                            setOrderResponse={setOrderResponse}
                            orderData={orderData}

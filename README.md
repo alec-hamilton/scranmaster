@@ -1,8 +1,15 @@
-# ScranMaster
+# FoodDelivery
  A food delivery App.
 
 ## Available Restaurants
-Participating Scran Partners™ are displayed on the site.
+Participating Restaurants are displayed on the homepage.
+
+## Ordering:
+1. Click on a restaurant name to view that restaurant's menu.
+2. Add items to the order using the buttons displayed in each item. 
+3. Place your order using the 'Place Order' button. 
+4. A window will then appear showing the progress of your order.
+5. Enjoy your meal
 
 ## Run Locally
 To run the api from your local machine, follow the instructions at https://github.com/iO-Academy/food-delivery-api

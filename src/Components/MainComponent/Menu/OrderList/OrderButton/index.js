@@ -1,4 +1,15 @@
+let disabled;
+
 const OrderButton = ({setPlaceOrder, setOrderData, orderItems, total}) => {
+
+    let isDisabled = {disabled};
+
+    if (orderItems.length != 0) {
+        disabled = '';
+    }
+    else {
+        disabled = 'disabled'
+    }
 
     const submitClick = () => {
 
@@ -10,7 +21,10 @@ const OrderButton = ({setPlaceOrder, setOrderData, orderItems, total}) => {
     }
 
     return (
-        <button className="btn btn-success" data-bs-target="#myModal" data-bs-toggle="modal" onClick={submitClick}>
+        <button className="btn btn-success" {...isDisabled}
+                data-bs-target="#myModal"
+                data-bs-toggle="modal"
+                onClick={submitClick}>
             Place Order
         </button>
     )
