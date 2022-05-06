@@ -15,7 +15,8 @@ const Modal = ({placeOrder, setPlaceOrder, orderResponse, setOrderData, setOrder
     let deliveryMins;
     let width = 0;
 
-    const orderWait = orderResponse.prepTime + orderResponse.deliveryTime;
+    // const orderWait = orderResponse.prepTime + orderResponse.deliveryTime;
+    const orderWait = 10;
     const [time, setTime] = useState(0);
     const [timerId, setTimerId] = useState(0);
     const [currentDate, setCurrentDate] = useState(new Date());

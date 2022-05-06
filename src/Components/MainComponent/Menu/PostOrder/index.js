@@ -16,6 +16,7 @@ const PostOrder = ({placeOrder, setOrderResponse, orderData}) => {
 
     const processResponseData = (data) => {
         setOrderResponse(data);
+        console.log(data);
     }
 
     return (
