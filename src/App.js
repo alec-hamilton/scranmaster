@@ -4,6 +4,7 @@ import Footer from "./Components/Footer";
 import Jumbo from "./Components/Jumbo";
 import MainComponent from "./Components/MainComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {useEffect, useState} from "react";
 
@@ -16,6 +17,7 @@ function App() {
     const [jumboText, setJumboText] = useState(jumboTextInit);
     const [restaurantID, setRestaurantID] = useState('');
     const [menuItems, setMenuItems] = useState([]);
+    const [filteredMenuItems, setFilteredMenuItems] = useState([]);
     const [showingRestaurants, setShowingRestaurants] = useState('d-block');
     const [showingChangeButton, setShowingChangeButton] = useState('d-none');
     const [showingMenuItems, setShowingMenuItems] = useState('d-block');
@@ -29,6 +31,7 @@ function App() {
         fetchMenu()
             .then((menuData) => {
                 setMenuItems(menuData);
+                setFilteredMenuItems(menuData);
                 setJumboTitle(menuData.restaurant);
                 setJumboText('');
                 setShowingRestaurants('d-none');
@@ -81,6 +84,7 @@ function App() {
         setJumboTitle(jumboTitleInit);
         setJumboText(jumboTextInit);
         setShowingChangeButton('d-none');
+        setRestaurantID('');
     }
 
     return (
@@ -99,8 +103,11 @@ function App() {
                     restaurantItems={restaurantItems}
                     setRestaurantID={setRestaurantID}
                     menuItems={menuItems}
+                    setMenuItems={setMenuItems}
                     showingRestaurants={showingRestaurants}
                     showingMenuItems={showingMenuItems}
+                    filteredMenuItems={filteredMenuItems}
+                    setFilteredMenuItems={setFilteredMenuItems}
                 />
             </div>
             <Footer/>
