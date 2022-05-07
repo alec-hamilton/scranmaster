@@ -128,21 +128,26 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
                     {reducedFoodTypeArr}
                 </ul>
             </div>
-            <div className="d-flex flex-column flex-lg-row ">
-                <div className="d-flex flex-wrap justify-content-start col-12 col-lg-10">
-                    {filteredMenu.map((foodItem, index) => {
-                            return (
-                                <div className="col-12 col-lg-2 px-1 my-1 card-group" key={index}>
-                                    <FoodItem foodItem={foodItem}
-                                              addToOrderItems={addToOrderItems}
-                                              orderItems={orderItems}
-                                              subtractFromOrderItems={subtractFromOrderItems}
-                                    />
-                                </div>
-                                );
-                            }
-                        )}
+            <div className="row w-100 p-0 m-0">
+                <div className="col-lg-10 col-12">
+                    <div className="d-flex flex-column flex-lg-row ">
+                        <div className="d-flex flex-wrap justify-content-start col-12 col-lg-12">
+                            {filteredMenu.map((foodItem, index) => {
+                                    return (
+                                        <div className="col-12 col-lg-2 px-1 my-1 card-group" key={index}>
+                                            <FoodItem foodItem={foodItem}
+                                                      addToOrderItems={addToOrderItems}
+                                                      orderItems={orderItems}
+                                                      subtractFromOrderItems={subtractFromOrderItems}
+                                            />
+                                        </div>
+                                    );
+                                }
+                            )}
+                        </div>
                     </div>
+                </div>
+                <div className="col-2 m-0 p-0">
                     <OrderList className="col-lg-2 col-12"
                                orderItems={orderItems}
                                subTotal={subTotal}
@@ -151,6 +156,7 @@ const Menu = ({menuItems, showingMenuItems, filteredMenuItems, setFilteredMenuIt
                                setOrderData={setOrderData}
                     />
                 </div>
+            </div>
                 <Modal placeOrder={placeOrder}
                        setPlaceOrder={setPlaceOrder}
                        orderResponse={orderResponse}
